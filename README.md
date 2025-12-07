@@ -283,6 +283,44 @@ han/
     └── bushido-han/      # CLI tool for installation & validation
 ```
 
+## Security
+
+Han has been independently security reviewed. Key findings:
+
+- ✅ **0 known vulnerabilities** in dependencies (verified via npm audit)
+- ✅ **HTTPS-only** marketplace downloads from official repository
+- ✅ **Proper sanitization** against command injection attacks
+- ✅ **Path traversal protection** in all file operations
+- ⚠️ **Plugins can execute commands** by design (like npm scripts)
+
+### Trust Model
+
+When you install Han plugins, you're trusting:
+- The Bushido Collective (marketplace curator)
+- Plugin authors (official marketplace only)
+- Claude Code (the execution environment)
+
+### Security Best Practices
+
+```bash
+# Review what you're installing
+han plugin list
+han explain
+
+# Test hooks without executing
+han hook test --verbose
+
+# Disable all hooks if needed
+export HAN_DISABLE_HOOKS=1
+```
+
+For more details:
+- 📖 [Quick Security Assessment](./SECURITY_QUICK_START.md)
+- 🔍 [Full Security Review](./SECURITY_REVIEW.md)
+- 🔒 [Security Policy](./SECURITY.md)
+
+**Bottom Line:** Han is as safe as the plugins you install. Stick to the official marketplace. 🛡️
+
 ## License
 
 MIT License - see [LICENSE](LICENSE) for details.
